@@ -11,7 +11,15 @@ load_dotenv()
 
 # UI Configuration
 st.set_page_config(page_title="AI Data Analyst", page_icon="📊")
-st.title("📊 Conversational SQL Agent")
+# st.title("📊 Datalogue")
+# st.caption("Conversational SQL Agent")
+
+# Instead of st.title
+st.markdown("<h1 style='font-size: 30px;'>📊 Datalogue</h1>", unsafe_allow_html=True)
+st.markdown(
+    "<p style='font-size: 18px;'>Conversational SQL Agent</p>", unsafe_allow_html=True
+)
+
 
 # Sidebar Configuration
 with st.sidebar:
@@ -35,8 +43,9 @@ if "messages" not in st.session_state:
     st.session_state.messages = []
 
 # Verify Database exists
-db_path = "/home/sanjay/projects/sql_agent/chinook.db"
-if not os.path.exists(db_path):
+db_path = "chinook.db"
+absolute_db_path = os.path.abspath(db_path)
+if not os.path.exists(absolute_db_path):
     st.error("Database not found. Please run `uv run setup_db.py` first.")
     st.stop()
 
@@ -90,7 +99,7 @@ if prompt := st.chat_input("Ask a question about the data..."):
         agent_input = prompt
 
     # Initialize DB, LLM, and Agent
-    db = SQLDatabase.from_uri(f"sqlite:///{db_path}")
+    db = SQLDatabase.from_uri(f"sqlite:///{absolute_db_path}")
 
     # ChatOpenAI automatically detects OPENAI_API_KEY from the environment
     llm = ChatOpenAI(model="gpt-4o", temperature=0, streaming=True)
