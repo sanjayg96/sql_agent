@@ -1,5 +1,7 @@
 # Datalogue: Democratizing Enterprise Data Access
 
+**Live Demo:** [Try Datalogue Here](https://sqlagent-uhtpvkmjt4r5zomm6ayk9o.streamlit.app/)
+
 An autonomous, LLM-powered SQL agent designed to bridge the gap between non-technical business stakeholders and complex relational databases. Built with Python, Streamlit, and LangChain, this application acts as a virtual data analyst capable of reasoning through database schemas, writing multi-table SQL joins, executing queries, and maintaining conversational context for follow-up questions.
 
 ## The Pain Point
